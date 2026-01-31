@@ -1,14 +1,139 @@
-<form id="donationForm" action="https://formspree.io/f/xjgrdneb" method="POST">
-  <input type="text" name="name" placeholder="الاسم" required>
-  <input type="email" name="email" placeholder="البريد الإلكتروني" required>
-  <input type="tel" name="phone" placeholder="رقم الهاتف">
-  <input type="number" name="amount" placeholder="المبلغ" required>
-  <textarea name="message" placeholder="رسالة"></textarea>
-  <button type="submit">تبرع الآن</button>
-</form>
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Al-Jood Wa Al-Mudad</title>
+  <style>
+    /* الخلفية الجميلة */
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background: linear-gradient(135deg, #6a11cb, #2575fc); /* تدرج أرجواني - أزرق */
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
 
-<script>
-document.getElementById("donationForm").addEventListener("submit", function() {
-  alert("تم إرسال بياناتك بنجاح! شكراً لتبرعك.");
-});
-</script>
+    /* تصميم الفورم */
+    form {
+      width: 100%;
+      max-width: 450px;
+      background: rgba(255, 255, 255, 0.95); /* شفاف قليلاً */
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    input, textarea, select, button {
+      width: 100%;
+      margin-bottom: 15px;
+      padding: 12px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 16px;
+      box-sizing: border-box;
+    }
+
+    button {
+      background: #28a745;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+
+    button:hover { background: #218838; }
+
+    .quick-donate {
+      background: #007bff;
+    }
+    .quick-donate:hover { background: #0069d9; }
+
+    .language {
+      background: #ffc107;
+      color: #000;
+    }
+    .language:hover { background: #e0a800; }
+
+    /* زر احجز */
+    .reserve-btn {
+      background: #17a2b8;
+      color: #fff;
+      padding: 12px 25px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+    .reserve-btn:hover { background: #138496; }
+
+  </style>
+</head>
+<body>
+
+  <form id="donationForm">
+    <h2>نموذج التبرع</h2>
+    <input type="text" name="name" placeholder="الاسم" required>
+    <input type="email" name="email" placeholder="البريد الإلكتروني" required>
+    <input type="tel" name="phone" placeholder="رقم الهاتف">
+    <input type="number" name="amount" placeholder="المبلغ" required>
+    <textarea name="message" placeholder="رسالة"></textarea>
+
+    <button type="submit">تبرع الآن</button>
+    <button type="button" class="quick-donate" onclick="quickDonate()">تبرع سريع 102030</button>
+    <button type="button" class="language" onclick="toggleLanguage()">English/عربي</button>
+
+    <div style="text-align:center; margin-top: 15px;">
+      <button type="button" class="reserve-btn" onclick="alert('تم الحجز!');">احجز</button>
+    </div>
+  </form>
+
+  <script>
+    // تبرع سريع
+    function quickDonate() {
+      document.querySelector('input[name="amount"]').value = 102030;
+      alert("تم تعيين مبلغ التبرع إلى 102030. اضغط تبرع الآن لإرسال البيانات!");
+    }
+
+    // تبديل اللغة
+    let arabic = true;
+    function toggleLanguage() {
+      arabic = !arabic;
+      if(arabic) {
+        document.querySelector('h2').innerText = "نموذج التبرع";
+        document.querySelector('input[name="name"]').placeholder = "الاسم";
+        document.querySelector('input[name="email"]').placeholder = "البريد الإلكتروني";
+        document.querySelector('input[name="phone"]').placeholder = "رقم الهاتف";
+        document.querySelector('input[name="amount"]').placeholder = "المبلغ";
+        document.querySelector('textarea[name="message"]').placeholder = "رسالة";
+        document.querySelector('button[type="submit"]').innerText = "تبرع الآن";
+      } else {
+        document.querySelector('h2').innerText = "Donation Form";
+        document.querySelector('input[name="name"]').placeholder = "Name";
+        document.querySelector('input[name="email"]').placeholder = "Email";
+        document.querySelector('input[name="phone"]').placeholder = "Phone";
+        document.querySelector('input[name="amount"]').placeholder = "Amount";
+        document.querySelector('textarea[name="message"]').placeholder = "Message";
+        document.querySelector('button[type="submit"]').innerText = "Donate Now";
+      }
+    }
+
+    // رسالة تأكيد الإرسال
+    document.getElementById("donationForm").addEventListener("submit", function() {
+      alert("تم إرسال بياناتك بنجاح! شكراً لتبرعك.");
+    });
+  </script>
+
+</body>
+</html>
